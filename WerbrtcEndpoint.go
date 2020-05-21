@@ -1,6 +1,8 @@
 package kurento
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type IWebRtcEndpoint interface {
 	GatherCandidates() error
@@ -36,7 +38,7 @@ func (elem *WebRtcEndpoint) getConstructorParams(from IMediaObject, options map[
 
 // Init the gathering of ICE candidates.
 // It must be called after SdpEndpoint::generateOffer or SdpEndpoint::processOffer
-func (elem *WebRtcEndpoint) GatherCandidates() error {
+func (elem *WebRtcEndpoint) GatherCandidates() *Error {
 	req := elem.getInvokeRequest()
 
 	req["params"] = map[string]interface{}{
@@ -53,7 +55,7 @@ func (elem *WebRtcEndpoint) GatherCandidates() error {
 }
 
 // Provide a remote ICE candidate
-func (elem *WebRtcEndpoint) AddIceCandidate(candidate IceCandidate) error {
+func (elem *WebRtcEndpoint) AddIceCandidate(candidate IceCandidate) *Error {
 	req := elem.getInvokeRequest()
 
 	params := make(map[string]interface{})

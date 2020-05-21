@@ -67,6 +67,10 @@ func (c *Connection) handleResponse() {
 	for { // run forever
 		r := Response{}
 		websocket.JSON.Receive(c.ws, &r)
+		if debug {
+			j, _ := json.MarshalIndent(r, "", "    ")
+			log.Println("json response", string(j))
+		}
 		if r.Result["sessionId"] != "" {
 			if debug {
 				log.Println("SESSIONID RETURNED")
@@ -95,7 +99,7 @@ func (c *Connection) Request(req map[string]interface{}) <-chan Response {
 	c.clients[c.clientId] = make(chan Response)
 	if debug {
 		j, _ := json.MarshalIndent(req, "", "    ")
-		log.Println("json", string(j))
+		log.Println("json request", string(j))
 	}
 	websocket.JSON.Send(c.ws, req)
 	return c.clients[c.clientId]

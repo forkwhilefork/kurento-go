@@ -143,5 +143,9 @@ func setIfNotEmpty(param map[string]interface{}, name string, t interface{}) {
 				param[name] = val
 			}
 		}
+	case IceCandidate:
+		if v != (IceCandidate{}) {
+			param[name] = v
+		}
 	}
 }

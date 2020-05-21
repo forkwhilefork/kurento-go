@@ -19,9 +19,9 @@ const (
 )
 
 type IceCandidate struct {
-	Candidate     string
-	SdpMid        string
-	SdpMLineIndex int
+	Candidate     string `json:"candidate"`
+	SdpMid        string `json:"sdpMid"`
+	SdpMLineIndex int    `json:"sdpMLineIndex"`
 }
 
 type ServerInfo struct {
