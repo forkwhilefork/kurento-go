@@ -14,7 +14,7 @@ func Debug(state bool) {
 	debug = state
 }
 
-// IMadiaElement implements some basic methods as getConstructorParams or Create().
+// IMediaElement implements some basic methods as getConstructorParams or Create().
 type IMediaObject interface {
 
 	// Return the constructor parameters
@@ -70,7 +70,7 @@ func (elem *MediaObject) setConnection(c *Connection) {
 }
 
 // Set parent of current element
-// BUG(recursion) a recursion happends while testing, I must find why
+// BUG(recursion) a recursion happens while testing, I must find why
 func (elem *MediaObject) setParent(m IMediaObject) {
 	elem.Parent = m
 }
